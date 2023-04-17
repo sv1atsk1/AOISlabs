@@ -4,5 +4,5 @@
 ![Функция на вход](https://github.com/sv1atsk1/AOISlabs/blob/main/AOISlab2(with_tests)/Screenshots%20for%20demonstration/Type_of_input.png)
 
 # На выходе мы получаем:
-![Выход](https://github.com/sv1atsk1/AOISlabs/blob/main/AOISlab2(with_tests)/Screenshots%20for%20demonstration/Output.png)
+![Выход]([https://github.com/sv1atsk1/AOISlabs/blob/main/AOISlab2(with_tests)/Screenshots%20for%20demonstration/Output.png](https://github.com/sv1atsk1/AOISlabs/blob/main/AOISlab2(with_tests)/Screenshots%20for%20demonstration/Output.png))
 

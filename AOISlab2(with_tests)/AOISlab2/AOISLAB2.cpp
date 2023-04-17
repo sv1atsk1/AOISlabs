@@ -424,20 +424,23 @@ int main()
     cout << endl;
     cout << "------------------------------------------------------------------------------------------" << endl;
     int index = 0;
-    for (int i = 0; i < table.size(); i++)
-    {
-        for (int j = 0; j < table[i].size(); j++)
-        {
-            if (table[i][j] == 1)
-            {
-                index++;
-            }
+    int numOfRows = table.size();
+    for (const auto& vec : table) {
+        if (vec.back() == 1) {
+            
+            index += vec.back() * pow(2, numOfRows-1);
+            
         }
+        else {
+            cout << " ";
+        }
+        numOfRows--;
+        
+
     }
     cout << "INDEX = " << index;
     cout << endl;
     cout << "------------------------------------------------------------------------------------------" << endl;
-
 }
 
 //!(((!a)+(!b))*(!((!c)*(!b))))

@@ -86,29 +86,29 @@ def length_comparison(list1, list2):
 def sum_of_binary_numbers(list1, list2):
     list1, list2 = length_comparison(list1, list2)
     remainder = 0
-    temp = 0
+    counter = 0
     sum_of_numbers = []
     for i in reversed(range(0, len(list1))):
         remainder = (int(list1[i]) + int(list2[i]))
-        if remainder == 0 and temp == 0:
+        if remainder == 0 and counter == 0:
             sum_of_numbers.insert(0, 0)
-            temp = 0
-        elif remainder == 0 and temp == 1:
+            counter = 0
+        elif remainder == 0 and counter == 1:
             sum_of_numbers.insert(0, 1)
-            temp = 0
-        elif remainder == 1 and temp == 0:
+            counter = 0
+        elif remainder == 1 and counter == 0:
             sum_of_numbers.insert(0, 1)
-            temp = 0
-        elif remainder == 1 and temp == 1:
+            counter = 0
+        elif remainder == 1 and counter == 1:
             sum_of_numbers.insert(0, 0)
-            temp = 1
-        elif remainder == 2 and temp == 0:
+            counter = 1
+        elif remainder == 2 and counter == 0:
             sum_of_numbers.insert(0, 0)
-            temp = 1
-        elif remainder == 2 and temp == 1:
+            counter = 1
+        elif remainder == 2 and counter == 1:
             sum_of_numbers.insert(0, 1)
-            temp = 1
-    if temp > 0:
+            counter = 1
+    if counter > 0:
         sum_of_numbers.insert(0, 1)
     print(sum_of_numbers)
     return sum_of_numbers
@@ -142,8 +142,8 @@ def binary_multiplication(list1, list2):
     for i in reversed(range(len(list1))):
         carry = 0
         for j in reversed(range(len(list2))):
-            temp = list1[i] * list2[j] + carry
-            carry, digit = divmod(result[i+j+1] + temp, 2)
+            temp_elememt = list1[i] * list2[j] + carry
+            carry, digit = divmod(result[i+j+1] + temp_elememt, 2)
             result[i+j+1] = digit
         result[i] += carry
     
@@ -210,15 +210,15 @@ def from_decimal_to_float(decimal):
 def _to_fix(decimal):
     if decimal == 0:
         return [0] * 24
-    temp1 = int(decimal)
+    number1 = int(decimal)
     i = 0
     mantissa_size = 23
-    fraction_part = decimal - float(temp1)
-    temp2 = decimal_to_binary_additional_order(temp1)
-    if temp2.count(1) == 0:
+    fraction_part = decimal - float(number1)
+    number2 = decimal_to_binary_additional_order(number1)
+    if number2.count(1) == 0:
         result = [0]
     else:
-        result = temp2[temp2.index(1):]
+        result = number2[number2.index(1):]
     result.append(".")
     while i <= (mantissa_size - len(result)):
         fraction_part *= 2
@@ -366,18 +366,18 @@ def menu():
         match command:
             case 1:
                 if numberr1 < 0 < numberr2:
-                    temp = numberr1
+                    buffer = numberr1
                     numberr1 = numberr2
-                    numberr2 = temp
+                    numberr2 = buffer
                 number1 = decimal_to_binary_direct_order(numberr1)
                 number2 = decimal_to_binary_reverse_order(numberr2)
                 print("Первое число = ", decimal_to_binary_direct_order(numberr1))
                 print("Второе число = ", decimal_to_binary_additional_order(numberr2))
             case 2:
                 if numberr1 < 0 < numberr2:
-                    temp = numberr1
+                    buffer = numberr1
                     numberr1 = numberr2
-                    numberr2 = temp
+                    numberr2 = buffer
                 number1 = decimal_to_binary_direct_order(numberr1)
                 number2 = decimal_to_binary_additional_order(numberr2)
                 print("Первое число = ", decimal_to_binary_direct_order(numberr1))

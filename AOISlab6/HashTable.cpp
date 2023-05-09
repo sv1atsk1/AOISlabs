@@ -3,7 +3,7 @@
 void HashTable::add(string key, string info) {
 	for (int i = 0; i < tableSize; i++) {
 		if (key == table[i].key) {
-			throw exception("òàêîé êëþ÷ óæå ñóùåñòâóåò\n");
+			throw exception("Ñ‚Ð°ÐºÐ¾Ð¹ ÐºÐ»ÑŽÑ‡ ÑƒÐ¶Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚\n");
 		}
 	}
 	int num = hashFunction(key);
@@ -41,7 +41,7 @@ void HashTable::remove(string key) {
 			num = table[num].numNext;
 		}
 	}
-	if (table[num].numNext != -1 && table[num].numPrev == -1) {	//åñëè ýëåìåíò ïåðâûé â öåïî÷êå êîëëèçèè
+	if (table[num].numNext != -1 && table[num].numPrev == -1) {	//Ã¥Ã±Ã«Ã¨ Ä±Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã¯Ã¥ÄŸÃ¢Ã»Ã© Ã¢ Ã¶Ã¥Ã¯Ã®Ã·ÃªÃ¥ ÃªÃ®Ã«Ã«Ã¨Ã§Ã¨Ã¨
 		int cnt = table[num].numNext;
 		table[num] = table[cnt];
 		table[num].numPrev = -1;
@@ -52,7 +52,7 @@ void HashTable::remove(string key) {
 		table[cnt].numNext = -1;
 		table[cnt].numPrev = -1;
 	}
-	if (table[num].numNext != -1 && table[num].numPrev != -1) {	//åñëè ýëåìåíò â ñåðåäèíå öåïî÷êè
+	if (table[num].numNext != -1 && table[num].numPrev != -1) {	//Ã¥Ã±Ã«Ã¨ Ä±Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã¢ Ã±Ã¥ÄŸÃ¥Ã¤Ã¨Ã­Ã¥ Ã¶Ã¥Ã¯Ã®Ã·ÃªÃ¨
 		table[table[num].numPrev].numNext = table[num].numNext;
 		table[table[num].numNext].numPrev = table[num].numPrev;
 		table[num].key = "";
@@ -62,7 +62,7 @@ void HashTable::remove(string key) {
 		table[num].numNext = -1;
 		table[num].numPrev = -1;
 	}
-	if (table[num].numNext == -1 && table[num].numPrev != -1) {	//åñëè ýëåìåíò â êîíöå öåïî÷êè
+	if (table[num].numNext == -1 && table[num].numPrev != -1) {	//Ã¥Ã±Ã«Ã¨ Ä±Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã¢ ÃªÃ®Ã­Ã¶Ã¥ Ã¶Ã¥Ã¯Ã®Ã·ÃªÃ¨
 		table[table[num].numPrev].numNext = -1;
 		table[num].key = "";
 		table[num].info = "";
@@ -71,7 +71,7 @@ void HashTable::remove(string key) {
 		table[num].numNext = -1;
 		table[num].numPrev = -1;
 	}
-	if (table[num].numNext == -1 && table[num].numPrev == -1) {	//åñëè ýëåìåíò íå â öåïî÷êå
+	if (table[num].numNext == -1 && table[num].numPrev == -1) {	//Ã¥Ã±Ã«Ã¨ Ä±Ã«Ã¥Ã¬Ã¥Ã­Ã² Ã­Ã¥ Ã¢ Ã¶Ã¥Ã¯Ã®Ã·ÃªÃ¥
 		table[num].key = "";
 		table[num].info = "";
 		table[num].isEmpty = 1;
@@ -90,13 +90,13 @@ string HashTable::find(string key) {
 		}
 	}
 	if (num == -1)return "";
-	cout << "Èñêîìîå çíà÷åíèå"  << ":" <<  table[num].info << "\n";
+	cout << "ÃˆÃ±ÃªÃ®Ã¬Ã®Ã¥ Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¥"  << ":" <<  table[num].info << "\n";
 	return table[num].info;
 }
 
 int HashTable::hashFunction(string key) {
 	int V = 0;
-	string alphabet = "àáâãäå¸æçèéêëìíîïðñòóôõö÷øùúûüýþÿ";
+	string alphabet = "Ã Ã¡Ã¢Ã£Ã¤Ã¥Â¸Ã¦Ã§Ã¨Ã©ÃªÃ«Ã¬Ã­Ã®Ã¯ÄŸÃ±Ã²Ã³Ã´ÃµÃ¶Ã·Ã¸Ã¹ÃºÃ»Ã¼Ä±ÅŸÃ¿";
 	for (string::iterator it = key.begin(); it != key.end(); it++){
 		*it = tolower(*it);
 	}
@@ -119,7 +119,7 @@ int HashTable::hashFunction(string key) {
 	return hash;
 }
 void HashTable::print() {
-	cout << setw(15)<<"êëþ÷" << setw(4) << "Ñ" << setw(3)<< "Ï"<< setw(2) << "L" <<setw(2) << "E" << "| çíà÷åíèå" << endl;
+	cout << setw(15)<<"ÃªÃ«ÅŸÃ·" << setw(4) << "Ã‘" << setw(3)<< "Ã"<< setw(2) << "L" <<setw(2) << "E" << "| Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¥" << endl;
 	for (int i = 0; i < table.size(); i++) {
 		cout << setw(15) << table[i].key <<"|" << setw(3) << table[i].numNext << setw(3) << table[i].numPrev << setw(2) << table[i].isLast << setw(2) << table[i].isEmpty << "| " << table[i].info << endl;
 	}

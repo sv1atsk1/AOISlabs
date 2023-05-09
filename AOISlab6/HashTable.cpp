@@ -2,8 +2,10 @@
 #include<iomanip>
 void HashTable::add(string key, string info) {
 	for (int i = 0; i < tableSize; i++) {
-		if (key == table[i].key) {
-			throw exception("такой ключ уже существует\n");
+		if (table[i].key == key)
+		{
+			table[i].info = info;
+			return;
 		}
 	}
 	int num = hashFunction(key);

@@ -41,7 +41,7 @@ void HashTable::remove(string key) {
 			num = table[num].numNext;
 		}
 	}
-	if (table[num].numNext != -1 && table[num].numPrev == -1) {	//åñëè ıëåìåíò ïåğâûé â öåïî÷êå êîëëèçèè
+	if (table[num].numNext != -1 && table[num].numPrev == -1) {	//если элемент первый в цепочке коллизии
 		int cnt = table[num].numNext;
 		table[num] = table[cnt];
 		table[num].numPrev = -1;
@@ -52,7 +52,7 @@ void HashTable::remove(string key) {
 		table[cnt].numNext = -1;
 		table[cnt].numPrev = -1;
 	}
-	if (table[num].numNext != -1 && table[num].numPrev != -1) {	//åñëè ıëåìåíò â ñåğåäèíå öåïî÷êè
+	if (table[num].numNext != -1 && table[num].numPrev != -1) {	//если элемент в середине цепочки
 		table[table[num].numPrev].numNext = table[num].numNext;
 		table[table[num].numNext].numPrev = table[num].numPrev;
 		table[num].key = "";
@@ -62,7 +62,7 @@ void HashTable::remove(string key) {
 		table[num].numNext = -1;
 		table[num].numPrev = -1;
 	}
-	if (table[num].numNext == -1 && table[num].numPrev != -1) {	//åñëè ıëåìåíò â êîíöå öåïî÷êè
+	if (table[num].numNext == -1 && table[num].numPrev != -1) {	//если элемент в конце цепочки
 		table[table[num].numPrev].numNext = -1;
 		table[num].key = "";
 		table[num].info = "";
@@ -71,7 +71,7 @@ void HashTable::remove(string key) {
 		table[num].numNext = -1;
 		table[num].numPrev = -1;
 	}
-	if (table[num].numNext == -1 && table[num].numPrev == -1) {	//åñëè ıëåìåíò íå â öåïî÷êå
+	if (table[num].numNext == -1 && table[num].numPrev == -1) {	//если элемент не в цепочке
 		table[num].key = "";
 		table[num].info = "";
 		table[num].isEmpty = 1;

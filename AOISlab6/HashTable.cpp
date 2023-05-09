@@ -90,13 +90,13 @@ string HashTable::find(string key) {
 		}
 	}
 	if (num == -1)return "";
-	cout << "Èñêîìîå çíà÷åíèå"  << ":" <<  table[num].info << "\n";
+	cout << "Искомое значение"  << ":" <<  table[num].info << "\n";
 	return table[num].info;
 }
 
 int HashTable::hashFunction(string key) {
 	int V = 0;
-	string alphabet = "àáâãäå¸æçèéêëìíîïğñòóôõö÷øùúûüışÿ";
+	string alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 	for (string::iterator it = key.begin(); it != key.end(); it++){
 		*it = tolower(*it);
 	}
@@ -119,7 +119,7 @@ int HashTable::hashFunction(string key) {
 	return hash;
 }
 void HashTable::print() {
-	cout << setw(15)<<"êëş÷" << setw(4) << "Ñ" << setw(3)<< "Ï"<< setw(2) << "L" <<setw(2) << "E" << "| çíà÷åíèå" << endl;
+	cout << setw(15)<<"ключ" << setw(4) << "С" << setw(3)<< "П"<< setw(2) << "L" <<setw(2) << "E" << "| значение" << endl;
 	for (int i = 0; i < table.size(); i++) {
 		cout << setw(15) << table[i].key <<"|" << setw(3) << table[i].numNext << setw(3) << table[i].numPrev << setw(2) << table[i].isLast << setw(2) << table[i].isEmpty << "| " << table[i].info << endl;
 	}

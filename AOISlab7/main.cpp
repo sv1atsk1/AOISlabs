@@ -46,56 +46,61 @@ trigger recursive_func(string argument, vector <bool> word, int i) {
 	return final_state_of_variables;
 };
 
-void matching_search(vector <vector <bool>> book, vector <bool> word)
+vector<vector<bool>> findBestMatches(const vector<vector<bool>>& book, const vector<bool>& word)
 {
-	vector <vector <bool>> best_matches;
-	vector <size_t> best_match_numb;
-	size_t best_match_discharge = 0;
-	size_t current_best_match_discharge;
+	vector<vector<bool>> bestMatches;
+	vector<size_t> bestMatchIndices;
+	size_t bestMatchDischarge = 0;
+	size_t currentBestMatchDischarge;
 
-	for (size_t each_word = 0; each_word < book.size(); each_word++)
+	for (size_t eachWord = 0; eachWord < book.size(); eachWord++)
 	{
-		if (word != book[each_word])
+		if (word != book[eachWord])
 		{
-			current_best_match_discharge = 0;
-			for (size_t each_letter = 0; each_letter < word.size(); each_letter++)
+			currentBestMatchDischarge = 0;
+			for (size_t eachLetter = 0; eachLetter < word.size(); eachLetter++)
 			{
-				if (word[each_letter] == book[each_word][each_letter])
+				if (word[eachLetter] == book[eachWord][eachLetter])
 				{
-					current_best_match_discharge = each_letter + 1;
+					currentBestMatchDischarge = eachLetter + 1;
 				}
 				else
 				{
-					each_letter = book[each_word].size() + 1;
+					eachLetter = book[eachWord].size() + 1;
 				}
 			}
-			if (current_best_match_discharge > best_match_discharge)
+			if (currentBestMatchDischarge > bestMatchDischarge)
 			{
-				best_match_discharge = current_best_match_discharge;
-				best_match_numb.clear();
-				best_matches.clear();
-				best_match_numb.push_back(each_word);
-				best_matches.push_back(book[each_word]);
+				bestMatchDischarge = currentBestMatchDischarge;
+				bestMatchIndices.clear();
+				bestMatches.clear();
+				bestMatchIndices.push_back(eachWord);
+				bestMatches.push_back(book[eachWord]);
 			}
-			else if (current_best_match_discharge == best_match_discharge)
+			else if (currentBestMatchDischarge == bestMatchDischarge)
 			{
-				best_match_numb.push_back(each_word);
-				best_matches.push_back(book[each_word]);
+				bestMatchIndices.push_back(eachWord);
+				bestMatches.push_back(book[eachWord]);
 			}
 		}
 	}
 
-	for (size_t each_word = 0; each_word < best_matches.size(); each_word++)
+	return bestMatches;
+}
+
+void printMatches(const vector<vector<bool>>& matches, const vector<size_t>& matchIndices, size_t bestMatchDischarge)
+{
+	for (size_t eachWord = 0; eachWord < matches.size(); eachWord++)
 	{
-		cout << "[" << best_match_numb[each_word] << "] ";
-		for (size_t each_letter = 0; each_letter < best_matches[each_word].size(); each_letter++)
+		cout << "[" << matchIndices[eachWord] << "] ";
+		for (size_t eachLetter = 0; eachLetter < matches[eachWord].size(); eachLetter++)
 		{
-			cout << best_matches[each_word][each_letter];
+			cout << matches[eachWord][eachLetter];
 		}
 		cout << endl;
 	}
 
-	cout << "Max matches discharge: " << best_match_discharge << endl;
+	cout << "Max matches discharge: " << bestMatchDischarge << endl;
 }
 
 bool booleanSearch(const vector<vector<bool>>& book, const string& argument, bool (*boolFunction)(const vector<bool>&))
@@ -144,14 +149,15 @@ int main() {
 		cout << endl;
 	}
 	int choice;
-	cout << "Выберите операцию:" << "\n" << "1 - Поиск по соответствию " << "\n" << "2 - Поиск на основе булевых функций" << endl;
+	cout << "Choose an operation:" << "\n" << "1 - Search by match " << "\n" << "2 - Search based on Boolean function" << endl;
 	cin >> choice;
 	if (choice == 1)
 	{
 		cout << endl << "Enter the number of word to search matching: ";
-		int matching;
+		size_t matching;
 		cin >> matching;
-		matching_search(dictionary, dictionary[matching]);
+		vector<vector<bool>> matches = findBestMatches(dictionary, dictionary[matching]);
+		printMatches(matches, vector<size_t>{matching}, matches.size() > 0 ? matches[0].size() : 0);
 		cout << endl << "Enter the word to search: ";
 		string a;
 		cin >> a;
@@ -167,10 +173,10 @@ int main() {
 		string a;
 		cin >> a;
 		int operation;
-		cout << "Выберите операцию для поиска:" << endl;
-		cout << "1 - И" << endl;
-		cout << "2 - ИЛИ" << endl;
-		cout << "3 - Исключающее ИЛИ" << endl;
+		cout << "Select an operation to search:" << endl;
+		cout << "1 - AND" << endl;
+		cout << "2 - OR" << endl;
+		cout << "3 - XOR" << endl;
 		cin >> operation;
 		bool (*boolFunction)(const vector<bool>&) = nullptr;
 		switch (operation)
@@ -185,7 +191,7 @@ int main() {
 			boolFunction = booleanFunctionXOR;
 			break;
 		default:
-			cout << "Недопустимая операция" << endl;
+			cout << "Invalid operation" << endl;
 			return 0;
 		}
 

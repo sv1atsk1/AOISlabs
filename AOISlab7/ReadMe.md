@@ -14,6 +14,7 @@
 ## Пример меню поиска на основе булевых функций:
 ![Пример меню поиска на основе булевых функций](https://github.com/sv1atsk1/AOISlabs/blob/main/AOISlab7/Screenshots%20for%20demonstration/booleand_search.png)
 ## Пример поиска на основе булевых функций:
+* а. Логическое И
 * ### Выход: 
 ![Пример выхода для И](https://github.com/sv1atsk1/AOISlabs/blob/main/AOISlab7/Screenshots%20for%20demonstration/output2.1.png)
 * б. Логическое ИЛИ (OR)

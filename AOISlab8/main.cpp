@@ -159,7 +159,13 @@ public:
     }
 
     vector<int> readLine(int address) {
-        return __memory[address];
+        return __normal_view[address];
+    }
+
+    void printColumn(int columnNumber) {
+        for (const auto& row : __normal_view) {
+            cout << row[columnNumber] << " ";
+        }
     }
 
     vector<int> read(int address) {
@@ -231,13 +237,17 @@ int main() {
     memory.add(15, { 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 });
 
     memory.print();
-    std::cout << "Reading line 12: ";
-    std::vector<int> line12 = memory.readLine(14);
-    for (int value : line12) {
+    cout << "Column 2 in Normal View:" << endl;
+    memory.printColumn( 2);
+    std::cout << "\n";
+    std::cout << "Word 2 in Normal View" << "\n";
+    std::vector<int> line = memory.readLine(2);
+    for (int value : line) {
         std::cout << value << " ";
     }
     std::cout << "\n";
     std::cout << "Ordered Selection: " << std::endl;
+    std::cout << "\n";
     memory.ordered_selection(true);
     memory.print();
     std::cout << std::endl;

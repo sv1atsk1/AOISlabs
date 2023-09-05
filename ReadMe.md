@@ -1,1 +1,3 @@
-# Репозиторий для хранения лабораторных работ по предмету Аппаратное обеспечение интеллектуальных систем
+# Repository for storing laboratory work on the subject Hardware of intelligent systems systems
+
+
